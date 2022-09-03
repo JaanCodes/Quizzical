@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Karla:wght@400;700&display=swap');
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Karla';
+    box-sizing: border-box;
+}
+
+body {
+    background: #F5F7FB;
+    display: grid;
+    place-items: center;
+}
+
+.StartComponent {
+    height: 100vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 37px;
+    text-align: center;
+    color: #293264;
+}
+
+.start__p {
+    font-size: 16px;
+    line-height: 19px;
+    color: #293264;
+    margin-block: 24px;
+    line-height: 1.5em;
+}
+
+button {
+    font-weight: 500;
+    font-size: 16px;
+    color: #F5F7FB;
+    background: #4D5B9E;
+    border-radius: 20px;
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    outline: none;
+    transition: all 300ms;
+}
+
+button:hover {
+    outline: none;
+    transform: scale(1.1);
+}
+
+.title {
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    color: #103264;
+}
+
+.quiz {
+    margin: 40px 52px;
+    padding-bottom: 24px;
+    border-bottom: 0.8px solid #DBDEF0;
+}
+
+.question {
+    font-weight: 700;
+    font-size: 1em;
+    line-height: 1.5rem;
+    color: #293264;
+}
+
+.answers {
+    display: flex;
+    margin-top: 12px
+}
+
+.answer {
+    font-family: 'Inter';
+    font-size: 12px;
+    line-height: 12px;
+    text-align: center;
+    color: #293264;
+    border-radius: 8px;
+    border: 1px solid #293264;
+    padding: 6px 8px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+}
+
+.answer:first-child {
+    margin-right: 12px;
+}
+
+.active {
+    background-color: #D6DBF5 !important;
+    color: #293264 !important;
+}
+
+.answer:not(:first-child) {
+    margin-inline: 12px; 
+}
+
+.checkAnswers__btn {
+    background: #4D5B9E;
+    margin: 0 auto !important;
+    display: block !important;
+}
