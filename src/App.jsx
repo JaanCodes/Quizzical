@@ -9,7 +9,7 @@ import "./index.css"
 export default function App() {
   const [questionsData, setQuestionsData] = useState([])
   const [startQuiz, setStartQuiz] = useState(true)
-
+  const allCorrectAnswers = []
 
   useEffect(() => {
     async function getQuestions() {
@@ -19,16 +19,21 @@ export default function App() {
       setQuestionsData(data.results)
     }
     getQuestions()
-  }, [])
+  }, [startQuiz])
+
+  for(let i = 0 ; i < questionsData.length ; i++) {
+    allCorrectAnswers.push(questionsData[i].correct_answer)
+  }
 
   const questions = questionsData.map(question => {
     return (
       <Quiz 
         questionTitle={question.question} 
-        correctAnswer={question.correct_answer}
+        correctAnswers={allCorrectAnswers}
         incorrectAnswers={question.incorrect_answers}
         questionOptions={[...question.incorrect_answers, question.correct_answer].sort(() => Math.random() - 0.5)}
         key={nanoid()}
+        startGame={[startQuiz, setStartQuiz]}
       />
     )})
 
@@ -39,8 +44,7 @@ export default function App() {
           <section>
             <h1 className="title">Quizzical</h1>
             {questions}
-            <button className="checkAnswers__btn">Check Answers</button>
-          </section> : 
+          </section> :
           <Start startGame={[startQuiz, setStartQuiz]} />}
       </main>
   )

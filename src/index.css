@@ -115,6 +115,31 @@ button:hover {
 
 .checkAnswers__btn {
     background: #4D5B9E;
-    margin: 0 auto !important;
-    display: block !important;
+    margin: 0 auto;
+    display: none ;
+}
+
+.quiz:last-child {
+    border: none;
+}
+
+.quiz:last-child .checkAnswers {
+    display: block ;
+    margin-top: 60px;
+}
+
+.checkAnswers__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.checkAnswers__text {
+    color: #103264;
+}
+
+.quiz:last-child .checkAnswers.restartGame__btn {
+    display: block ;
+    margin-top: 20px;
 }
