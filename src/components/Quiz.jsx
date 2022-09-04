@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js'
-import { decode } from 'html-entities';
+import { decodeEntity } from 'html-entities';
 
 function unEscape(htmlStr) {
     htmlStr = htmlStr.replace(/&lt;/g , "<");	 
@@ -19,10 +19,6 @@ export default function Quiz(props) {
   const correctAnswers = props.correctAnswer
   const correctAnswersArray = []
   // correctAnswers.map(answer => correctAnswersArray.push(answer))
-  // console.log(correctAnswersArray);
-  // console.log(correctAnswersArray);
-  console.log(correctAnswers[1]);
-
   // const styles = {
   //   backgroundColor:    ? "lightblue" : "white"
   // }
@@ -32,16 +28,16 @@ export default function Quiz(props) {
     // setAllCorrectAnswers(props.correctAnswer)
   },[])
 
-  function handleClick(index) {
-    setSelectedAnswers(index)
+  function handleClick(option) {
+    setSelectedAnswers(oldAnswers => [...oldAnswers, option])
   }
-
-  const optionElements = answers.map((option, index) => {
+  
+  const optionElements = answers.map((option) => {
     return (
       <li 
         key={nanoid()} 
-        className={selectedAnswers === index ? "answer active" : "answer"}
-        onClick={() => {handleClick(index)}}
+        className={selectedAnswers.includes(option) ? "answer active" : "answer"}
+        onClick={() => handleClick(option)}
         // style={styles}
       >
         {option}
@@ -50,7 +46,7 @@ export default function Quiz(props) {
 
   return (
     <div className="quiz">
-        <h2 className="question">{unEscape(props.questionTitle)}</h2>
+        <h2 className="question">{decodeEntity(unEscape(props.questionTitle))}</h2>
         <ul className="answers">
             {optionElements}
         </ul>
