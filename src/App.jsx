@@ -8,7 +8,7 @@ import "./index.css"
 
 export default function App() {
   const [questionsData, setQuestionsData] = useState([])
-  const [startQuiz, setStartQuiz] = useState(true)
+  const [startQuiz, setStartQuiz] = useState(false)
   const allCorrectAnswers = []
 
   useEffect(() => {

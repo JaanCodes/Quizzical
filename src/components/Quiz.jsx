@@ -16,7 +16,7 @@ export default function Quiz(props) {
   const [answers, setAnswers] = useState([])
   const selectedAnswers = []
   const allCorrectAnswers = props.correctAnswers
-  const [correctAnswers, setCorrectAnswers] = useState(0)
+  let correctAnswers = 0
   const [showResult, setShowResult] = useState(false)
 
   useEffect(() => {
@@ -26,12 +26,13 @@ export default function Quiz(props) {
 
   function handleClick(option) {
     selectedAnswers.push(option)
+    console.log(selectedAnswers);
   }
 
   function checkCorrectAnswers() {
     selectedAnswers.map(answer => {
       if(allCorrectAnswers.includes(answer)){
-        setCorrectAnswers(prev => prev + 1)
+        correctAnswers += 1
       }
     })
     setShowResult(true)
@@ -39,7 +40,7 @@ export default function Quiz(props) {
 
   const optionElements = answers.map((option) => {
     return (
-      <li 
+      <li
         key={nanoid()} 
         onClick={() => handleClick(option)}
         className={selectedAnswers.includes(option) ? "answer active" : "answer"}
