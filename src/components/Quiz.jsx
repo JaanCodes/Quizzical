@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useEffect } from "react"
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js'
-import { decodeEntity } from 'html-entities';
+import { htmlDecode } from "./helperFunctions";
 
 function unEscape(htmlStr) {
     htmlStr = htmlStr.replace(/&lt;/g , "<");	 
@@ -51,7 +51,7 @@ export default function Quiz(props) {
 
   return (
     <div className="quiz">
-        <h2 className="question">{decodeEntity(unEscape(props.questionTitle))}</h2>
+        <h2 className="question">{htmlDecode(props.questionTitle)}</h2>
         <ul className="answers">
             {optionElements}
         </ul>

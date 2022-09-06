@@ -1,14 +1,14 @@
 import React from "react"
-import { useEffect, useState } from "react"
-import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js'
 import Start from "./components/Start"
 import Quiz from "./components/Quiz"
-import "./index.css"
+import { htmlDecode, shuffle } from "./components/helperFunctions"
+import { useEffect, useState } from "react"
+import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js'
 
 
 export default function App() {
-  const [questionsData, setQuestionsData] = useState([])
   const [startQuiz, setStartQuiz] = useState(false)
+  const [quizData, setQuizData] = useState([])
   const allCorrectAnswers = []
 
   useEffect(() => {
@@ -16,16 +16,16 @@ export default function App() {
       const url = "https://opentdb.com/api.php?amount=5"
       const res = await fetch(url)
       const data = await res.json()
-      setQuestionsData(data.results)
+      setQuizData(data.results)
     }
     getQuestions()
   }, [startQuiz])
 
-  for(let i = 0 ; i < questionsData.length ; i++) {
-    allCorrectAnswers.push(questionsData[i].correct_answer)
+  for(let i = 0 ; i < quizData.length ; i++) {
+    allCorrectAnswers.push(quizData[i].correct_answer)
   }
 
-  const questions = questionsData.map(question => {
+  const questions = quizData.map(question => {
     return (
       <Quiz 
         questionTitle={question.question} 
