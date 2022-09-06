@@ -3,15 +3,6 @@ import { useState, useEffect } from "react"
 import { nanoid } from 'https://cdn.jsdelivr.net/npm/nanoid/nanoid.js'
 import { htmlDecode } from "./helperFunctions";
 
-function unEscape(htmlStr) {
-    htmlStr = htmlStr.replace(/&lt;/g , "<");	 
-    htmlStr = htmlStr.replace(/&gt;/g , ">");     
-    htmlStr = htmlStr.replace(/&quot;/g , "\"");  
-    htmlStr = htmlStr.replace(/&#039;/g , "\'");   
-    htmlStr = htmlStr.replace(/&amp;/g , "&");
-    return htmlStr;
-}
-
 export default function Quiz(props) { 
   const [answers, setAnswers] = useState([])
   const selectedAnswers = []
@@ -26,7 +17,6 @@ export default function Quiz(props) {
 
   function handleClick(option) {
     selectedAnswers.push(option)
-    console.log(selectedAnswers);
   }
 
   function checkCorrectAnswers() {

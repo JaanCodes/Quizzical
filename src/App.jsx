@@ -31,11 +31,12 @@ export default function App() {
         questionTitle={question.question} 
         correctAnswers={allCorrectAnswers}
         incorrectAnswers={question.incorrect_answers}
-        questionOptions={[...question.incorrect_answers, question.correct_answer].sort(() => Math.random() - 0.5)}
+        questionOptions={shuffle([...question.incorrect_answers, question.correct_answer])}
         key={nanoid()}
         startGame={[startQuiz, setStartQuiz]}
       />
     )})
+
 
           
   return (

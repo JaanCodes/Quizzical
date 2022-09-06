@@ -1,5 +1,5 @@
-export function htmlDecode(input) {
-  var doc = new DOMParser().parseFromString(input, "text/html");
+export function htmlDecode(question) {
+  var doc = new DOMParser().parseFromString(question, "text/html");
   return doc.documentElement.textContent;
 }
 
