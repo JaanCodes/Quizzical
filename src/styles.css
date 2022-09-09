@@ -161,6 +161,11 @@ button:hover {
 
 .checkAnswers__text {
     color: #103264;
+    margin-bottom: 24px;
+}
+
+.quiz .checkAnswers__container {
+    display: none;
 }
 
 .quiz:last-child .checkAnswers.restartGame__btn {
@@ -173,4 +178,12 @@ button:hover {
 }
 .answerNotGuessed {
     background-color: red;
+}
+
+.quiz .displayNone {
+    display: none !important;
+}
+
+.quiz .displayNone:last-child {
+    display: block !important;
 }

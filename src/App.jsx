@@ -11,6 +11,10 @@ export default function App() {
   const [quizData, setQuizData] = useState([])
   const [dataLoaded, setDataLoaded] = useState(false)
   const [checkAnswers, setCheckAnswers] = useState(false)
+  const [showResult, setShowResult] = useState(false)
+  const [completed, setCompleted] = useState(false)
+  const [correctAnswers, setCorrectAnswers] = useState(0)
+
 
   useEffect(() => {
     async function getQuestions() {
@@ -22,6 +26,24 @@ export default function App() {
     }
     getQuestions()
   }, [startQuiz])
+
+
+  function startQuizFn() {
+    setStartQuiz(!startQuiz)
+    setQuizData([])
+    setDataLoaded(false)
+    setCheckAnswers(false)
+    setShowResult(false)
+    setCompleted(false)
+    setCorrectAnswers(0)
+  }
+
+  function handleClick() {
+    setCheckAnswers(true),
+    setShowResult(true)
+  }
+
+  
 
 
   const questions = quizData.map(question => {
@@ -41,6 +63,9 @@ export default function App() {
         })}
         startGame={[startQuiz, setStartQuiz]}
         checkAnswersProp={[checkAnswers, setCheckAnswers]}
+        showResultProp={[showResult, setShowResult]}
+        completedProp={[completed, setCompleted]}
+        correctAnswersProp={[setCorrectAnswers]}
       />
     )})
 
@@ -53,7 +78,20 @@ export default function App() {
           <section>
             <h1 className="title">Quizzical</h1>
             {questions}
-            <button className="checkAnswers checkAnswers__btn" onClick={() => setCheckAnswers(true)}>Check Answers</button>
+            
+            
+              {showResult ? 
+              <div className="checkAnswers__container">
+                <h3 className="checkAnswers checkAnswers__text">You have guessed {correctAnswers}/5 questions</h3>
+                <button className="checkAnswers checkAnswers__btn restartGame__btn" onClick={() => startQuizFn()}>Restart Quiz</button>
+              </div>
+              :
+              <div className="checkAnswers__container">
+                <button className="checkAnswers checkAnswers__btn" onClick={() => handleClick()}>Check Answers</button>
+              </div>
+              
+              }
+            
           </section>
           :
           <div className="spinner__container">
