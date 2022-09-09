@@ -41,6 +41,7 @@ export default function App() {
   function handleClick() {
     setCheckAnswers(true)
     setShowResult(true)
+    setCompleted(true)
   }
 
   
@@ -65,7 +66,7 @@ export default function App() {
         checkAnswersProp={[checkAnswers, setCheckAnswers]}
         showResultProp={[showResult, setShowResult]}
         completedProp={[completed, setCompleted]}
-        correctAnswersProp={[setCorrectAnswers]}
+        correctAnswersProp={setCorrectAnswers}
       />
     )})
 

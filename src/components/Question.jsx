@@ -11,7 +11,6 @@ export default function Quiz(props) {
 
   useEffect(() => {
     if(props.checkAnswersProp[0]) {
-      props.completedProp[1](!props.completedProp[0])
       setAnswers(prev => {
         return prev.map(ans => {
           return (
@@ -34,7 +33,7 @@ export default function Quiz(props) {
 
   
   function selectAnswer(id) {
-    if(props.completedProp === false) {
+    if(!props.completedProp[0]) {
       setAnswers(prevAnswers => prevAnswers.map(answer => {
         return (
           answer.id === id ? 
@@ -44,8 +43,6 @@ export default function Quiz(props) {
       }))
     }
   }
-
-  console.log(props.completedProp);
   
 
   const optionElements = answers.map((answer) => {
@@ -54,7 +51,7 @@ export default function Quiz(props) {
         key={answer.id}
         onClick={() => selectAnswer(answer.id)}
         style={{...answer.style}}
-        className={answer.selected && props.completedProp === false ? "answer selected" : "answer"}
+        className={answer.selected && !props.completedProp[0] ? "answer selected" : "answer"}
       >
         {htmlDecode(answer.answer)}
       </li>
