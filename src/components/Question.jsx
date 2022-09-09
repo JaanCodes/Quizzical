@@ -13,21 +13,28 @@ export default function Quiz(props) {
     if(props.checkAnswersProp[0]) {
       setAnswers(prev => {
         return prev.map(ans => {
-          return (
-            ans.selected ?
-              ans.correct ?
-                {...ans, style: {"backgroundColor": "green", "color": "white"}} && props.correctAnswersProp(prev => prev + 1)
-              :
-                {...ans, style: {"backgroundColor": "red", "color": "white"}}
-            :
-              ans.correct ?
-                {...ans, style: {"backgroundColor": "#ADF7B6", "color": "white"}}
-              :
-                {...ans}
-          )
+          if(ans.selected)
+            if(ans.correct) {
+              props.correctAnswersProp((prev) => prev + 1)
+              return {
+                ...ans, 
+                style: {"backgroundColor": "green", "color": "white"},
+              }
+            } 
+            else
+              return {
+                ...ans,
+                style: {"backgroundColor": "red", "color": "white"}
+              }
+          else if(ans.correct)
+              return {
+                ...ans,
+                style: {"backgroundColor": "#ADF7B6", "color": "white"}
+              }
+          else return {...ans}
         })
       }),
-      props.showResultProp[1](true)
+        props.showResultProp[1](true)
     }
   },[props.checkAnswersProp[0]])
 
