@@ -39,7 +39,7 @@ export default function App() {
   }
 
   function handleClick() {
-    setCheckAnswers(true),
+    setCheckAnswers(true)
     setShowResult(true)
   }
 
